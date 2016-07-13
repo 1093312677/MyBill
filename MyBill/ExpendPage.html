@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/ExpendPage.css" />
+	<body>
+		
+		<header>
+			
+			<div class="head">Expend</div>
+			<a href="javascript:refresh()" ><img src="images/iconfont-shuaxin.png" class="refresh"/></a>
+		</header>
+		
+		<article>
+			
+		<!--添加账单-->
+		<div class="addBill">
+			<a href="addBill.html"><img src="images/iconfont-jiahao.png" class="add"/></a>
+			
+			 <form name="form1">
+				<!--time start-->
+				<select name="timeYear" onchange="xml()" class="year">
+					<option value="2016">2016</option>
+					<option value="2017">2017</option>
+				</select>
+				
+				<select name="timeMonth" onchange="xml()" class="month">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+			</form>
+				<!--time end-->
+		</div>
+		<!--添加账单结束-->
+		
+		<!--显示账单-->
+		<div class="showBill" id="showBill"></div>
+		<!--显示账单结束-->
+		
+		</article>
+		
+		<!--js与服务器交互获取数据-->
+		<script>
+			
+		function xml(){
+			var xmlHttp;
+			var username ="wucong";
+			var timeYear = document.form1.timeYear.value;
+			var timeMonth = document.form1.timeMonth.value;
+			if(window.ActiveXObject){
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}else if(window.XMLHttpRequest){
+				xmlHttp = new XMLHttpRequest();
+			}
+
+			
+			xmlHttp.onreadystatechange = function(){
+				if(xmlHttp.readyState == 4){
+					if(xmlHttp.status == 200){
+						document.getElementById("showBill").innerHTML = xmlHttp.responseText;
+					}
+				}
+			}
+
+			xmlHttp.open("post","showBill.php?username="+username+"&timeYear="+timeYear+"&timeMonth="+timeMonth,true);
+			xmlHttp.send();
+		}
+
+		window.onload = xml;
+		
+		
+//		刷新页面
+		function refresh()
+		{
+			window.location.reload()
+			
+		}
+	</script>
+		</script>
+		
+		
+		<!--返回按钮开始-->
+		<script>
+			(function($, doc) {
+				$.init();
+				
+					$.oldBack = mui.back;
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if (backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+				});
+			}(mui, document));
+		</script>
+
+		<script src="js/mui.min.js"></script>	
+		<!--返回按钮结束-->
+	</body>
+</html>

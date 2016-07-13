@@ -1,0 +1,94 @@
+﻿*
+{
+	padding:0;
+	margin:0;
+	background-color:#EFEFF4;
+}
+/*导航栏开始*/
+.head
+{
+	position:fixed;
+	width:100%;
+	height: 7%;
+	background-color: white;
+	box-shadow: 0 2px 5px black;
+	
+	
+	text-align: center;
+	font-size:20px;
+	line-height:45px;
+}
+a
+{
+	
+	text-decoration: none;
+}
+
+.but1
+{
+	position:absolute;
+	top:40px;
+}
+
+img{
+	position: absolute;
+	top:20px;
+}
+.refresh
+{
+	position: absolute;
+	top:10px;
+	left:90%;
+	width: 30px;
+	background-color: white;
+}
+/*导航栏结束*/
+article
+{
+	position:absolute;
+	top:7%;
+}
+
+.month
+{
+	position: absolute;
+	top:0px;
+	width: 180px;
+	height: 40px;
+	margin-left: 180px;
+}
+.year
+{
+	position: absolute;
+	top:0px;
+	width: 180px;
+	height: 40px;
+	margin-left: 0px;
+}
+
+
+/*增加账单链接*/
+.add
+{
+	position: absolute;
+	top:-35px;
+	left: 5px;
+	width: 30px;
+	background-color: white;
+}
+
+/*对表格的布局开始*/
+table
+{	
+
+	margin-top: 25%;
+	
+}
+td
+{
+	width:50px;
+	height:40px;
+	
+}
+
+/*对表格的布局结束*/

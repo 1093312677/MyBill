@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/addBill.css" />
+	<body>
+		<header>
+			<div class="back"></div>
+			<a href="login.html"></a><div class="head">Expend</div></a>
+			
+		</header>
+	<div class="container">
+		<form name="form1" class="form1">
+			<input type="text" name="project" placeholder="请输入项目" /><br/>
+			<input type="date" name="time" placeholder="时间" value="time" /><br/>
+			<input type="number" name="money" placeholder="请输入金额"/><br/>
+			<input type="text" name="usage" placeholder="请输入用途"/><br/>
+			<input type="text" name="remark" placeholder="备注"/><br/>
+	
+			<select name="classify" value="请选择分类">
+				<option value="recharge">充值</option>
+				<option value="mealcard">饭卡</option>
+				<option value="cloth">服饰</option>
+				<option value="snacks">零食</option>
+				<option value="ohter">其他</option>
+			</select>
+			
+			<br />
+			<input type="button" value="Add" class="button" id="bu"  onclick="test()"/>
+		</form>
+		
+	</div>
+	<div id="div"></div>
+	
+	<script>
+		function click(){
+			var but = document.getElementById("bu").style.borderColor="red";
+		}
+	</script>
+	<!--传值与服务器交互开始-->	
+	<script>
+	function test(){
+		var username ="wucong";
+		var project = document.form1.project.value;
+		var date1 = document.form1.time.value;
+		var money = document.form1.money.value;
+		var usage = document.form1.usage.value;
+		var remark = document.form1.remark.value;
+		var classify = document.form1.classify.value;
+		
+		var xmlHttp;
+		if(window.ActiveXObject){
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}else if(window.XMLHttpRequest){
+					xmlHttp = new XMLHttpRequest();
+				}
+	
+	
+				xmlHttp.onreadystatechange = function(){
+					if(xmlHttp.readyState == 4){
+						if(xmlHttp.status == 200){
+							document.getElementById("div").innerHTML = xmlHttp.responseText;
+						}
+					}
+				}
+	
+				xmlHttp.open("POST","addBill.php?username="+username+"&project="+project+"&date1="+date1+"&money="+money+"&usage="+usage+"&remark="+remark+"&classify="+classify,true);
+				xmlHttp.send();
+		}		
+	</script>
+	<!--传值与服务器交互结束-->	
+		
+		<!--返回按钮开始-->
+	<script src="js/mui.min.js"></script>
+		<script>
+			(function($, doc) {
+				$.init();
+				
+					$.oldBack = mui.back;
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if (backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+				});
+			}(mui, document));
+		</script>
+		<!--返回按钮结束-->
+	</body>
+</html>
